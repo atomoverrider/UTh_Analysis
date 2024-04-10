@@ -1,3 +1,4 @@
+#Importing Libraries for the GUI, Excel sheet creation, and System commands
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QTabWidget, QMessageBox, QStyleFactory, QShortcut
 from PyQt5.QtGui import QIcon, QKeySequence
@@ -5,6 +6,7 @@ import sys
 import os
 import pandas as pd
 
+#Importing admin defined constants and methods for interactions with the GUI application
 import Globals
 from Analyzer import Analyzer
 from Inspector import Inspector
@@ -12,6 +14,7 @@ from InputTabWidget import InputTabWidget
 from AnalysisTabWidget import AnalysisTabWidget
 from InspectTabWidget import InspectTabWidget
 
+#Importing methods to perform UTh calculations  
 from RatioBuilding import RatioBuilder
 import DataFolderUtil
 import Util
@@ -21,8 +24,10 @@ from Settings import Settings
 
 from ConstantsDialog import loadConstants
 
+#Window class object for the GUI
 class Window(QtWidgets.QMainWindow):
 
+    #Setting window size and laying out different tabs and file options
     def __init__(self):
         super(Window, self).__init__()
         self.setGeometry(50, 50, 1200, 1000)
@@ -112,6 +117,7 @@ class Window(QtWidgets.QMainWindow):
         self.analysisTab.searchMetadataFile(path)
         self.analyzer.set_path(path)
 
+    #Move and organize working directory. And start calculating ratios
     def calcRatios(self, path):
         DataFolderUtil.createDataFolders(path)
         DataFolderUtil.removeUnnecessaryFiles(path)
